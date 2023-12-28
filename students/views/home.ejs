@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information</title>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
+
+    .table-container {
+      max-width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    th, td {
+      font-size: 14px;
+    }
+    a.btn {
+      background-color: #4CAF50; /* Green background color */
+      color: white; /* White text color */
+      padding: 10px 20px; /* Padding inside the button */
+      text-decoration: none; /* Remove default underline on the anchor */
+      border-radius: 4px; /* Rounded corners */
+      display: inline-block; /* Ensure inline-block behavior for padding */
+      transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+
+    a.btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+    .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.btn-download {
+  background-color: #008CBA; /* Change the color to suit your design */
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Student Information</h1>
+    <a href="/api/students/create-student" type="button" class="btn btn-success align-self-center">+ Add Student</a>
+    <a href="/api/students/download-csv" class="btn btn-download">Download CSV</a>
+    <a href="/api/company/home" class="btn btn-download">Go to Interview details</a>
+  </header>
+
+  <section class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>College</th>
+          <th>Contact Number</th>
+          <th>Year</th>
+          <th>DSA</th>
+          <th>Web Development</th>
+          <th>React</th> 
+          <th>Action</th>
+          <!-- Added Action column for consistency -->
+        </tr>
+      </thead>
+      <tbody>
+        <% studentsData.forEach(student => { %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.college %></td>
+            <td><%= student.contactNumber %></td>
+            <td><%= student.Year %></td>
+            <td><%= student.dsa %></td>
+            <td><%= student.webd %></td>
+            <td><%= student.react %></td>
+            <td>
+              <!-- Add a delete button -->
+              <form method="DELETE" action="/api/students/delete/<%= student._id %>" onsubmit="return confirm('Are you sure you want to delete this student?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      
+        <!-- Table rows will be dynamically populated using JavaScript -->
+      </tbody>
+      
+    </table>
+  </section>
+
+  </body>
+</html>

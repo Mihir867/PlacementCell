@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Information</title>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
+
+    .table-container {
+      max-width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    th, td {
+      font-size: 14px;
+    }
+    a.btn {
+      background-color: #4CAF50; /* Green background color */
+      color: white; /* White text color */
+      padding: 10px 20px; /* Padding inside the button */
+      text-decoration: none; /* Remove default underline on the anchor */
+      border-radius: 4px; /* Rounded corners */
+      display: inline-block; /* Ensure inline-block behavior for padding */
+      transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+
+    a.btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+    .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.btn-download {
+  background-color: #008CBA; /* Change the color to suit your design */
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Interview Information</h1>
+    <a href="/api/company/schedule-interview" type="button" class="btn btn-success align-self-center">+ Add Interview</a>
+    <a href="/api/students/" class="btn btn-download">Go to student details</a>
+  </header>
+
+  <section class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Company Name </th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>College</th>
+          <th>Action</th>
+          <!-- Added Action column for consistency -->
+        </tr>
+      </thead>
+      <tbody>
+        <% companyData.forEach(company => { %>
+          <tr>
+            <td><%= company.name %></td>
+            <td><%= company.email %></td>
+            <td><%= company.college %></td>
+            <td><%= company.contactNumber %></td>
+            <td><%= company.Year %></td>
+            <td><%= company.dsa %></td>
+            <td><%= company.webd %></td>
+            <td><%= company.react %></td>
+            <td>
+              <!-- Add a delete button -->
+              <form method="PUT" action="/api/company/update-status/<%= company._id %>" onsubmit="return confirm('Are you sure you want to update this interview?');">
+                <button type="submit" class="btn btn-danger">Update</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      
+        <!-- Table rows will be dynamically populated using JavaScript -->
+      </tbody>
+      
+    </table>
+  </section>
+
+  </body>
+</html>
